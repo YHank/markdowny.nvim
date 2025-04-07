@@ -36,13 +36,15 @@ require('markdowny').setup({filetypes = {'markdown', 'txt'}})
 
 ## Default keymaps
 
-All in visual mode
-
+In visual mode:
 - `<CR>k`: Adds a link to visually selected text.
 - `<CR>b`: Toggles visually selected text to bold.
 - `<CR>i`: Toggles visually selected text to italic.
 - `<CR>c`: Toggles visually selected text to strikethrough.
 - `<CR>e`: Toggles visually selected text to inline code, and **V-LINE** selected text to a multiline code block.
+
+In normal mode:
+- `<CR>c`: Toggles the current line to strikethrough.
 
 ## Custom setup
 
@@ -53,6 +55,7 @@ vim.keymap.set('v', '<CR>b', ":lua require('markdowny').bold()<cr>", { buffer = 
 vim.keymap.set('v', '<CR>i', ":lua require('markdowny').italic()<cr>", { buffer = 0 })
 vim.keymap.set('v', '<CR>k', ":lua require('markdowny').link()<cr>", { buffer = 0 })
 vim.keymap.set('v', '<CR>c', ":lua require('markdowny').strikethrough()<cr>", { buffer = 0 })
+vim.keymap.set('n', '<CR>c', ":lua require('markdowny').strikethrough_line()<cr>", { buffer = 0 })
 vim.keymap.set('v', '<CR>e', ":lua require('markdowny').code()<cr>", { buffer = 0 })
 
 ```
