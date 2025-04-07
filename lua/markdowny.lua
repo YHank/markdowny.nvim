@@ -214,6 +214,10 @@ function M.code()
     end
 end
 
+function M.strikethrough()
+    inline_surround('~~', '~~')
+end
+
 function M.link()
     vim.ui.input({ prompt = 'Href:' }, function(href)
         if href == nil then
@@ -240,6 +244,7 @@ function M.setup(opts)
             vim.keymap.set('v', '<CR>b', ":lua require('markdowny').bold()<cr>", { buffer = 0, desc = "Bold text" })
             vim.keymap.set('v', '<CR>i', ":lua require('markdowny').italic()<cr>", { buffer = 0, desc = "Italic text" })
             vim.keymap.set('v', '<CR>k', ":lua require('markdowny').link()<cr>", { buffer = 0, desc = "Add link" })
+            vim.keymap.set('v', '<CR>c', ":lua require('markdowny').strikethrough()<cr>", { buffer = 0, desc = "Strikethrough text" })
             vim.keymap.set('v', '<CR>e', ":lua require('markdowny').code()<cr>", { buffer = 0, desc = "Code block" })
         end,
     })
