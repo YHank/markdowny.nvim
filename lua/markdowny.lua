@@ -218,6 +218,23 @@ function M.strikethrough()
     inline_surround('~~', '~~')
 end
 
+-- Applies strikethrough formatting to the current line in normal mode
+function M.strikethrough_line()
+    local line_num = vim.api.nvim_win_get_cursor(0)[1]
+    local line_text = get_line(line_num)
+    
+    -- Check if line is already strikethrough
+    if line_text:match('^~~.*~~$') then
+        -- Remove strikethrough
+        line_text = line_text:gsub('^~~(.*)~~$', '%1')
+    else
+        -- Add strikethrough
+        line_text = '~~' .. line_text .. '~~'
+    end
+    
+    vim.api.nvim_buf_set_lines(0, line_num - 1, line_num, true, {line_text})
+end
+
 function M.link()
     vim.ui.input({ prompt = 'Href:' }, function(href)
         if href == nil then
@@ -245,6 +262,7 @@ function M.setup(opts)
             vim.keymap.set('v', '<CR>i', ":lua require('markdowny').italic()<cr>", { buffer = 0, desc = "Italic text" })
             vim.keymap.set('v', '<CR>k', ":lua require('markdowny').link()<cr>", { buffer = 0, desc = "Add link" })
             vim.keymap.set('v', '<CR>c', ":lua require('markdowny').strikethrough()<cr>", { buffer = 0, desc = "Strikethrough text" })
+            vim.keymap.set('n', '<CR>c', ":lua require('markdowny').strikethrough_line()<cr>", { buffer = 0, desc = "Strikethrough line" })
             vim.keymap.set('v', '<CR>e', ":lua require('markdowny').code()<cr>", { buffer = 0, desc = "Code block" })
         end,
     })
