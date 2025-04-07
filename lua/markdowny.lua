@@ -237,9 +237,9 @@ function M.setup(opts)
         desc = 'markdowny.nvim keymaps',
         pattern = opts.filetypes or {'markdown', 'gitcommit', 'hgcommit'},
         callback = function()
-            vim.keymap.set('v', '<CR>e', ":lua require('markdowny').code()<cr>", { buffer = 0, desc = "Code block" })
-            vim.keymap.set('v', '<CR>e', ":lua require('markdowny').code()<cr>", { buffer = 0, desc = "Code block" })
-            vim.keymap.set('v', '<CR>e', ":lua require('markdowny').code()<cr>", { buffer = 0, desc = "Code block" })
+            vim.keymap.set('v', '<CR>b', ":lua require('markdowny').bold()<cr>", { buffer = 0, desc = "Bold text" })
+            vim.keymap.set('v', '<CR>i', ":lua require('markdowny').italic()<cr>", { buffer = 0, desc = "Italic text" })
+            vim.keymap.set('v', '<CR>k', ":lua require('markdowny').link()<cr>", { buffer = 0, desc = "Add link" })
             vim.keymap.set('v', '<CR>e', ":lua require('markdowny').code()<cr>", { buffer = 0, desc = "Code block" })
         end,
     })
